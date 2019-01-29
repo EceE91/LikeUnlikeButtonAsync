@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Likes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsLike" Type="bit" Nullable="false" />
+          <Property Name="ThreadId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Thread">
+          <Key>
+            <PropertyRef Name="ThreadId" />
+          </Key>
+          <Property Name="ThreadId" Type="int" Nullable="false" />
+          <Property Name="SecretPoll" Type="int" />
+          <Property Name="LikeCount" Type="int" />
+          <Property Name="DislikeCount" Type="int" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thread" EntityType="Self.Thread" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Like">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsLike" Type="Boolean" Nullable="false" />
+          <Property Name="ThreadId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Thread">
+          <Key>
+            <PropertyRef Name="ThreadId" />
+          </Key>
+          <Property Name="ThreadId" Type="Int32" Nullable="false" />
+          <Property Name="SecretPoll" Type="Int32" />
+          <Property Name="LikeCount" Type="Int32" />
+          <Property Name="DislikeCount" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Likes" EntityType="Self.Like" />
+          <EntitySet Name="Threads" EntityType="Self.Thread" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="Likes">
+            <EntityTypeMapping TypeName="Model.Like">
+              <MappingFragment StoreEntitySet="Likes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+                <ScalarProperty Name="ThreadId" ColumnName="ThreadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Threads">
+            <EntityTypeMapping TypeName="Model.Thread">
+              <MappingFragment StoreEntitySet="Thread">
+                <ScalarProperty Name="ThreadId" ColumnName="ThreadId" />
+                <ScalarProperty Name="SecretPoll" ColumnName="SecretPoll" />
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
+                <ScalarProperty Name="DislikeCount" ColumnName="DislikeCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
